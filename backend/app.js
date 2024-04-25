@@ -9,7 +9,8 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 8080;
 
-app.use(bodyParser.json())
+app
+    .use(bodyParser.json())
     .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
@@ -24,3 +25,7 @@ mongodb.initDb((err, mongodb) => {
         console.log(`Connected to DB and listening on ${port}`);
     }
 });
+
+app.listen(port, () => {
+    console.log(`app listening on ${port}`);
+})
